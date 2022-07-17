@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +13,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
+@Entity
 @Table(name = "product_inventory")
 public class ProductInventory {
     @Id

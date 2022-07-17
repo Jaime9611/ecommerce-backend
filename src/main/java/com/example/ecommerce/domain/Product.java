@@ -4,13 +4,16 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.UUID;
 
 @Getter
@@ -18,22 +21,28 @@ import java.util.UUID;
 @Entity
 @Table(name = "product")
 public class Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Type(type = "uuid-char")
     private UUID id;
 
+    @NotNull
+    @NotBlank
     private String name;
 
-    private String desc;
+    @NotNull
+    @NotBlank
+    @Size(min = 10, max = 255)
+    private String description;
 
+    @NotNull
+    @NotBlank
     private Double price;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private ProductCategory category;
-
-    @ManyToOne
-    @JoinColumn(name = "inventory_id")
+    @OneToOne
     private ProductInventory inventory;
+
+    @OneToOne
+    private ProductCategory category;
 }
