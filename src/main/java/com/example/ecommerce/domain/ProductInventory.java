@@ -21,5 +21,5 @@ public class ProductInventory {
     @Type(type = "uuid-char")
     private UUID id;
 
-    private int quantity;
+    private Integer quantity;
 }
