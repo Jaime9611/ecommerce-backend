@@ -13,7 +13,7 @@ public class ProductMapperTest {
     @Test
     public void shouldConvertProductToProductDTO() throws Exception {
         // Given
-        Product testProduct = ProductBuilder.build();
+        Product testProduct = ProductBuilder.build(false);
 
         // When
         ProductDTO productDTO = productMapper.productToProductDTO(testProduct);

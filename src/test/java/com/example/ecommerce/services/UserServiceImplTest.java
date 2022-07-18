@@ -19,8 +19,6 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceImplTest {
-    //private static final String ID = "84f96f32-a31b-4d5e-a0d9-d907c8159037";
-
     @Mock
     private UserRepository userRepository;
 
