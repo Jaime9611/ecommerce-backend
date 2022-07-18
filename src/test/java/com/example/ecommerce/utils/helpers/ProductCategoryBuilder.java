@@ -1,5 +1,6 @@
 package com.example.ecommerce.utils.helpers;
 
+import com.example.ecommerce.api.v1.model.ProductCategoryDTO;
 import com.example.ecommerce.domain.ProductCategory;
 
 import java.util.UUID;
@@ -14,5 +15,14 @@ public class ProductCategoryBuilder {
         productCategory.setName(NAME);
 
         return productCategory;
+    }
+
+    public static ProductCategoryDTO buildDTO() {
+        ProductCategoryDTO.ProductCategoryDTOBuilder productCategoryDTO = ProductCategoryDTO.builder();
+
+        productCategoryDTO.id(ID);
+        productCategoryDTO.name(NAME);
+
+        return productCategoryDTO.build();
     }
 }

@@ -26,4 +26,21 @@ public class ProductMapperTest {
         assertEquals(testProduct.getCategory().getId().toString(), productDTO.getCategory().getId());
         assertEquals(testProduct.getInventory().getId().toString(), productDTO.getInventory().getId());
     }
+
+    @Test
+    public void shouldConvertProductDTOtoProduct() throws Exception {
+        // Given
+        ProductDTO testProductDTO = ProductBuilder.buildDTO();
+
+        // When
+        Product product = productMapper.productDtoToProduct(testProductDTO);
+
+        // Then
+        assertEquals(testProductDTO.getId(), product.getId().toString());
+        assertEquals(testProductDTO.getName(), product.getName());
+        assertEquals(testProductDTO.getDesc(), product.getDescription());
+        assertEquals(testProductDTO.getPrice(), product.getPrice());
+        assertEquals(testProductDTO.getCategory().getId(), product.getCategory().getId().toString());
+        assertEquals(testProductDTO.getInventory().getId(), product.getInventory().getId().toString());
+    }
 }

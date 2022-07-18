@@ -1,5 +1,6 @@
 package com.example.ecommerce.utils.helpers;
 
+import com.example.ecommerce.api.v1.model.ProductInventoryDTO;
 import com.example.ecommerce.domain.ProductInventory;
 
 import java.util.UUID;
@@ -14,5 +15,14 @@ public class ProductInventoryBuilder {
         productInventory.setQuantity(QUANTITY);
 
         return productInventory;
+    }
+
+    public static ProductInventoryDTO buildDTO() {
+        ProductInventoryDTO.ProductInventoryDTOBuilder productInventoryDTO = ProductInventoryDTO.builder();
+
+        productInventoryDTO.id(ID);
+        productInventoryDTO.quantity(QUANTITY);
+
+        return productInventoryDTO.build();
     }
 }

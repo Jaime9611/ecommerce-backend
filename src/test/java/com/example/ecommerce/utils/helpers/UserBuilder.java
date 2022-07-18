@@ -1,5 +1,6 @@
 package com.example.ecommerce.utils.helpers;
 
+import com.example.ecommerce.api.v1.model.UserDTO;
 import com.example.ecommerce.domain.User;
 
 import java.util.UUID;
@@ -19,5 +20,15 @@ public class UserBuilder {
         user.setPassword(PWD);
 
         return user;
+    }
+
+    public static UserDTO buildDTO() {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(ID);
+        userDTO.setName(UNAME);
+        userDTO.setPassword(PWD);
+        userDTO.setEmail(EMAIL);
+
+        return userDTO;
     }
 }
