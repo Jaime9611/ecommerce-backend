@@ -1,13 +1,9 @@
 package com.example.ecommerce.services;
 
 import com.example.ecommerce.api.v1.model.ProductDTO;
-import com.example.ecommerce.api.v1.model.UserDTO;
 import com.example.ecommerce.domain.Product;
-import com.example.ecommerce.domain.User;
 import com.example.ecommerce.repositories.ProductRepository;
-import com.example.ecommerce.repositories.UserRepository;
 import com.example.ecommerce.utils.helpers.ProductBuilder;
-import com.example.ecommerce.utils.helpers.UserBuilder;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -56,12 +52,13 @@ public class ProductServiceImplTest {
         // GIVEN
         List<Product> products = ProductBuilder.buildList(LIST_LENGTH);
 
-        when(productRepository.findAll()).thenReturn(products);
+        when(productRepository.findAllByCategoryId(any(UUID.class))).thenReturn(products);
 
         // WHEN
         List<ProductDTO> productResp = productService.getAllProductsByCategoryId(products.get(0).getCategory().getId());
 
         // THEN
         assertEquals(LIST_LENGTH, productResp.size());
+        assertEquals(products.get(3).getCategory().getName(), productResp.get(5).getCategory().getName());
     }
 }

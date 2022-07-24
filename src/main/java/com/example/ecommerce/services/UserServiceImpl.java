@@ -2,7 +2,7 @@ package com.example.ecommerce.services;
 
 import com.example.ecommerce.api.v1.mapper.UserMapper;
 import com.example.ecommerce.api.v1.model.UserDTO;
-import com.example.ecommerce.domain.User;
+import com.example.ecommerce.domain.security.User;
 import com.example.ecommerce.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

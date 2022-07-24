@@ -1,6 +1,7 @@
 package com.example.ecommerce.domain;
 
 
+import com.example.ecommerce.domain.security.User;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;

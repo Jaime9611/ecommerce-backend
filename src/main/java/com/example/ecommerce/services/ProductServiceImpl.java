@@ -7,9 +7,11 @@ import com.example.ecommerce.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -32,6 +34,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductDTO> getAllProductsByCategoryId(UUID categoryId) {
+
+        List<Product> products = productRepository.findAllByCategoryId(categoryId);
+
+        if (!products.isEmpty()) {
+            return products.stream().map(product -> productMapper.productToProductDTO(product)).collect(Collectors.toList());
+        }
+
         return null;
     }
 }

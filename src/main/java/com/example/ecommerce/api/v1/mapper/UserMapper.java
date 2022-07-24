@@ -1,7 +1,7 @@
 package com.example.ecommerce.api.v1.mapper;
 
 import com.example.ecommerce.api.v1.model.UserDTO;
-import com.example.ecommerce.domain.User;
+import com.example.ecommerce.domain.security.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

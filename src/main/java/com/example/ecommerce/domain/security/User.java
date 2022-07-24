@@ -1,5 +1,6 @@
-package com.example.ecommerce.domain;
+package com.example.ecommerce.domain.security;
 
+import com.example.ecommerce.domain.UserAddress;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
