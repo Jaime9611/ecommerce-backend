@@ -11,7 +11,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Singular;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +19,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.util.Set;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -41,7 +39,7 @@ public class Role {
   private Set<User> users;
 
   @Singular
-  @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+  @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
   @JoinTable(name = "role_authority", joinColumns = {
       @JoinColumn(name = "role_id", referencedColumnName = "id")}, inverseJoinColumns = {
       @JoinColumn(name = "authority_id", referencedColumnName = "id")})

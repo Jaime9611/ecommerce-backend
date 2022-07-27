@@ -1,6 +1,8 @@
 package com.example.ecommerce.domain.security;
 
 import com.example.ecommerce.domain.UserAddress;
+import java.util.stream.Collectors;
+import javax.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -43,11 +45,21 @@ public class User {
   private String email;
 
   @Singular
-  @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+  @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
   @JoinTable(name = "user_role", joinColumns = {
       @JoinColumn(name = "user_id", referencedColumnName = "id")}, inverseJoinColumns = {
       @JoinColumn(name = "role_id", referencedColumnName = "id")})
   private Set<Role> roles;
+
+  @Transient
+  private Set<Authority> authorities;
+
+  public Set<Authority> getAuthorities() {
+    return this.roles.stream()
+        .map(Role::getAuthorities)
+        .flatMap(Set::stream)
+        .collect(Collectors.toSet());
+  }
 
   @OneToMany(mappedBy = "user")
   private List<UserAddress> userAddresses;
