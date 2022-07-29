@@ -1,10 +1,10 @@
 package com.example.ecommerce.domain;
 
+import javax.persistence.JoinColumn;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,27 +22,29 @@ import java.util.UUID;
 @Table(name = "product")
 public class Product {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Type(type = "uuid-char")
-    private UUID id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Type(type = "uuid-char")
+  private UUID id;
 
-    @NotNull
-    @NotBlank
-    private String name;
+  @NotNull
+  @NotBlank
+  private String name;
 
-    @NotNull
-    @NotBlank
-    @Size(min = 10, max = 255)
-    private String description;
+  @NotNull
+  @NotBlank
+  @Size(min = 10, max = 255)
+  private String description;
 
-    @NotNull
-    @NotBlank
-    private Double price;
+  @NotNull
+  @NotBlank
+  private Double price;
 
-    @OneToOne
-    private ProductInventory inventory;
+  @OneToOne
+  @JoinColumn(name = "inventory_id")
+  private ProductInventory inventory;
 
-    @OneToOne
-    private ProductCategory category;
+  @OneToOne
+  @JoinColumn(name = "category_id")
+  private ProductCategory category;
 }
