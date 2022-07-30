@@ -1,5 +1,6 @@
 package com.example.ecommerce.api.v1.model;
 
+import java.util.List;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
@@ -8,10 +9,11 @@ import lombok.ToString;
 @Builder
 @ToString
 public class ProductDTO {
-    private String id;
-    private String name;
-    private String desc;
-    private Double price;
-    private ProductCategoryDTO category;
-    private ProductInventoryDTO inventory;
+
+  private String id;
+  private String name;
+  private String desc;
+  private Double price;
+  private List<ProductCategoryDTO> categories;
+  private ProductInventoryDTO inventory;
 }

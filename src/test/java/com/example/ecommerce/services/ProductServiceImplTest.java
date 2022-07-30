@@ -21,44 +21,47 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class ProductServiceImplTest {
 
-    private static final int LIST_LENGTH = 10;
-    @Mock
-    private ProductRepository productRepository;
+  private static final int LIST_LENGTH = 10;
+  @Mock
+  private ProductRepository productRepository;
 
-    @InjectMocks
-    private ProductServiceImpl productService;
+  @InjectMocks
+  private ProductServiceImpl productService;
 
-    @Test
-    public void shouldReturnProductDTOWhenGivenAnId() throws Exception {
-        // GIVEN
-        Product product = ProductBuilder.build(false);
+  @Test
+  public void shouldReturnProductDTOWhenGivenAnId() throws Exception {
+    // GIVEN
+    Product product = ProductBuilder.build(false);
 
-        when(productRepository.findById(any(UUID.class))).thenReturn(Optional.of(product));
+    when(productRepository.findById(any(UUID.class))).thenReturn(Optional.of(product));
 
-        // WHEN
-        ProductDTO productDTO = productService.getProductById(product.getId());
+    // WHEN
+    ProductDTO productDTO = productService.getProductById(product.getId());
 
-        // THEN
-        assertEquals(product.getId().toString(), productDTO.getId());
-        assertEquals(product.getName(), productDTO.getName());
-        assertEquals(product.getDescription(), productDTO.getDesc());
-        assertEquals(product.getPrice(), productDTO.getPrice());
-        assertEquals(product.getInventory().getId().toString(), productDTO.getInventory().getId());
-        assertEquals(product.getCategory().getId().toString(), productDTO.getCategory().getId());
-    }
+    // THEN
+    assertEquals(product.getId().toString(), productDTO.getId());
+    assertEquals(product.getName(), productDTO.getName());
+    assertEquals(product.getDescription(), productDTO.getDesc());
+    assertEquals(product.getPrice(), productDTO.getPrice());
+    assertEquals(product.getInventory().getId().toString(), productDTO.getInventory().getId());
+    assertEquals(product.getCategories().stream().findFirst().get().getId().toString(),
+        productDTO.getCategories().get(0).getId());
+  }
 
-    @Test
-    public void shouldReturnListOfProductDTOWhenGivenACategoryId() throws Exception {
-        // GIVEN
-        List<Product> products = ProductBuilder.buildList(LIST_LENGTH);
+  @Test
+  public void shouldReturnListOfProductDTOWhenGivenACategoryId() throws Exception {
+    // GIVEN
+    List<Product> products = ProductBuilder.buildList(LIST_LENGTH);
 
-        when(productRepository.findAllByCategoryId(any(UUID.class))).thenReturn(products);
+    when(productRepository.findProductsByCategoriesId(any(UUID.class))).thenReturn(products);
 
-        // WHEN
-        List<ProductDTO> productResp = productService.getAllProductsByCategoryId(products.get(0).getCategory().getId());
+    // WHEN
+    List<ProductDTO> productResp = productService.getAllProductsByCategoryId(
+        products.get(0).getCategories().stream().findFirst().get().getId());
 
-        // THEN
-        assertEquals(LIST_LENGTH, productResp.size());
-        assertEquals(products.get(3).getCategory().getName(), productResp.get(5).getCategory().getName());
-    }
+    // THEN
+    assertEquals(LIST_LENGTH, productResp.size());
+    assertEquals(products.get(3).getCategories().stream().findFirst().get().getName(),
+        productResp.get(5).getCategories().get(0).getName());
+  }
 }

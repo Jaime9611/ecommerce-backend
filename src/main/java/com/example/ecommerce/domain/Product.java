@@ -34,6 +34,7 @@ public class Product {
 
   @NotNull
   @NotBlank
+  @Size(min = 2, max = 100)
   private String name;
 
   @NotNull
@@ -51,5 +52,5 @@ public class Product {
 
   @ManyToMany
   @JoinTable(name = "products_categories", joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id"))
-  private Set<ProductCategory> categories;
+  private Set<ProductCategory> categories = new HashSet<>();
 }
