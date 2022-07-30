@@ -1,5 +1,6 @@
 package com.example.ecommerce.domain;
 
+import com.example.ecommerce.utils.constants.TableConstants;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
@@ -14,12 +15,13 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "product_inventory")
+@Table(name = TableConstants.TABLE_NAME_INVENTORY)
 public class ProductInventory {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Type(type = "uuid-char")
-    private UUID id;
 
-    private Integer quantity;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Type(type = TableConstants.TYPE_UUID)
+  private UUID id;
+
+  private Integer quantity;
 }

@@ -1,5 +1,6 @@
 package com.example.ecommerce.domain.security;
 
+import com.example.ecommerce.utils.constants.TableConstants;
 import com.sun.source.doctree.SerialFieldTree;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
@@ -26,7 +27,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "role")
+@Table(name = TableConstants.TABLE_NAME_ROLE)
 public class Role {
 
   @Id

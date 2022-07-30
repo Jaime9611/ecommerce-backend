@@ -1,5 +1,6 @@
 package com.example.ecommerce.domain.security;
 
+import com.example.ecommerce.utils.constants.TableConstants;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +20,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "authority")
+@Table(name = TableConstants.TABLE_NAME_AUTHORITY)
 public class Authority {
 
   @Id

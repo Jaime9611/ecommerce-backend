@@ -1,5 +1,9 @@
 package com.example.ecommerce.domain;
 
+import com.example.ecommerce.utils.constants.TableConstants;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.ManyToMany;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
@@ -14,12 +18,16 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "product_category")
+@Table(name = TableConstants.TABLE_NAME_CATEGORY)
 public class ProductCategory {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Type(type = "uuid-char")
-    private UUID id;
 
-    private String name;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Type(type = TableConstants.TYPE_UUID)
+  private UUID id;
+
+  private String name;
+
+  @ManyToMany(mappedBy = "categories")
+  private Set<Product> products;
 }

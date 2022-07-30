@@ -1,6 +1,11 @@
 package com.example.ecommerce.domain;
 
+import com.example.ecommerce.utils.constants.TableConstants;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
@@ -19,12 +24,12 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "product")
+@Table(name = TableConstants.TABLE_NAME_PRODUCT)
 public class Product {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  @Type(type = "uuid-char")
+  @Type(type = TableConstants.TYPE_UUID)
   private UUID id;
 
   @NotNull
@@ -44,7 +49,7 @@ public class Product {
   @JoinColumn(name = "inventory_id")
   private ProductInventory inventory;
 
-  @OneToOne
-  @JoinColumn(name = "category_id")
-  private ProductCategory category;
+  @ManyToMany
+  @JoinTable(name = "products_categories", joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id"))
+  private Set<ProductCategory> categories;
 }

@@ -16,31 +16,32 @@ import java.util.stream.Collectors;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
-    ProductRepository productRepository;
+  @Autowired
+  ProductRepository productRepository;
 
-    ProductMapper productMapper = ProductMapper.INSTANCE;
+  ProductMapper productMapper = ProductMapper.INSTANCE;
 
-    @Override
-    public ProductDTO getProductById(UUID id) {
-        Optional<Product> product = productRepository.findById(id);
+  @Override
+  public ProductDTO getProductById(UUID id) {
+    Optional<Product> product = productRepository.findById(id);
 
-        if(product.isPresent()) {
-            return productMapper.productToProductDTO(product.get());
-        }
-
-        return null;
+    if (product.isPresent()) {
+      return productMapper.productToProductDTO(product.get());
     }
 
-    @Override
-    public List<ProductDTO> getAllProductsByCategoryId(UUID categoryId) {
+    return null;
+  }
 
-        List<Product> products = productRepository.findAllByCategoryId(categoryId);
+  @Override
+  public List<ProductDTO> getAllProductsByCategoryId(UUID categoryId) {
 
-        if (!products.isEmpty()) {
-            return products.stream().map(product -> productMapper.productToProductDTO(product)).collect(Collectors.toList());
-        }
+    List<Product> products = productRepository.findProductsByCategoriesId(categoryId);
 
-        return null;
+    if (!products.isEmpty()) {
+      return products.stream().map(product -> productMapper.productToProductDTO(product))
+          .collect(Collectors.toList());
     }
+
+    return null;
+  }
 }
