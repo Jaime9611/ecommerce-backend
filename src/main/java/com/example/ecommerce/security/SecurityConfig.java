@@ -30,8 +30,8 @@ public class SecurityConfig {
         .cors().and()
         .csrf().disable()
         .authorizeHttpRequests()
-        .antMatchers("/api/v1/", "/login", "/**/authenticate").permitAll()
-        .antMatchers("/api/v1/products")
+        .antMatchers("/api/v1/", "/login", "/**/authenticate", "/api/v1/products/**").permitAll()
+        .antMatchers("/api/v1/admin/**")
         .hasAnyAuthority("product.create", "product.delete")
         .anyRequest().authenticated().and().sessionManagement().sessionCreationPolicy(
             SessionCreationPolicy.STATELESS)
