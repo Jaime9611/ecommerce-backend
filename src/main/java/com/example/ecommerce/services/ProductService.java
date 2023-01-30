@@ -9,6 +9,6 @@ import java.util.UUID;
 public interface ProductService {
 
   ProductDTO getProductById(UUID id);
-
+  List<ProductDTO> getAllProducts();
   List<ProductDTO> getAllProductsByCategoryId(UUID categoryId);
 }

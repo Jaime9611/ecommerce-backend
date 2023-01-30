@@ -23,6 +23,11 @@ public class ProductController {
   @Autowired
   private ProductService productService;
 
+  @GetMapping
+  public ResponseEntity<List<ProductDTO>> getAllProducts() {
+    return ResponseEntity.ok(productService.getAllProducts());
+  }
+
   @GetMapping(Paths.Products.GET_PRODUCT_BY_ID)
   public ResponseEntity<ProductDTO> getProductById(@PathVariable UUID productId) {
     return ResponseEntity.ok(productService.getProductById(productId));

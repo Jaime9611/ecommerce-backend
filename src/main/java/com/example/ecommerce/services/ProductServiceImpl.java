@@ -34,15 +34,22 @@ public class ProductServiceImpl implements ProductService {
   }
 
   @Override
+  public List<ProductDTO> getAllProducts() {
+    List<Product> products = productRepository.findAll();
+
+    return products.stream().map(product -> productMapper.productToProductDTO(product)).collect(Collectors.toList());
+  }
+
+  @Override
   public List<ProductDTO> getAllProductsByCategoryId(UUID categoryId) {
 
     List<Product> products = productRepository.findProductsByCategoriesId(categoryId);
 
-    if (!products.isEmpty()) {
-      return products.stream().map(product -> productMapper.productToProductDTO(product))
-          .collect(Collectors.toList());
+    if (products.isEmpty()) {
+      throw new EntityNotFoundException("Category", categoryId);
     }
 
-    return null;
+    return products.stream().map(product -> productMapper.productToProductDTO(product))
+            .collect(Collectors.toList());
   }
 }

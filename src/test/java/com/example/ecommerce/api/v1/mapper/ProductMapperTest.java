@@ -23,7 +23,7 @@ public class ProductMapperTest {
         assertEquals(testProduct.getName(), productDTO.getName());
         assertEquals(testProduct.getDescription(), productDTO.getDesc());
         assertEquals(testProduct.getPrice(), productDTO.getPrice());
-        assertEquals(testProduct.getCategory().getId().toString(), productDTO.getCategory().getId());
+        assertEquals(testProduct.getCategories().stream().findFirst().get().getId().toString(), productDTO.getCategories().get(0).getId());
         assertEquals(testProduct.getInventory().getId().toString(), productDTO.getInventory().getId());
     }
 
@@ -40,7 +40,7 @@ public class ProductMapperTest {
         assertEquals(testProductDTO.getName(), product.getName());
         assertEquals(testProductDTO.getDesc(), product.getDescription());
         assertEquals(testProductDTO.getPrice(), product.getPrice());
-        assertEquals(testProductDTO.getCategory().getId(), product.getCategory().getId().toString());
+        assertEquals(testProductDTO.getCategories().get(0).getId(), product.getCategories().stream().findFirst().get().getId().toString());
         assertEquals(testProductDTO.getInventory().getId(), product.getInventory().getId().toString());
     }
 }

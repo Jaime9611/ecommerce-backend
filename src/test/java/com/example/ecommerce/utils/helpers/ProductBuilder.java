@@ -13,6 +13,8 @@ public class ProductBuilder {
     private static final String DESC = "Test Description for product.";
     private static final Double PRICE = 123.3;
 
+    private static final int CATEGORIES_LENGTH = 2;
+
     public static Product build(boolean random) {
         Product product = new Product();
         product.setId(random ? UUID.randomUUID() : UUID.fromString(ID));
@@ -20,7 +22,7 @@ public class ProductBuilder {
         product.setDescription(DESC);
         product.setPrice(PRICE);
         product.setInventory(ProductInventoryBuilder.build());
-        product.setCategory(ProductCategoryBuilder.build());
+        product.setCategories(ProductCategoryBuilder.buildList(CATEGORIES_LENGTH));
 
         return product;
     }
@@ -46,7 +48,7 @@ public class ProductBuilder {
         productDTO.name(NAME);
         productDTO.price(PRICE);
         productDTO.desc(DESC);
-        productDTO.category(ProductCategoryBuilder.buildDTO());
+        productDTO.categories(ProductCategoryBuilder.buildListDTO(CATEGORIES_LENGTH));
         productDTO.inventory(ProductInventoryBuilder.buildDTO());
 
         return productDTO.build();
