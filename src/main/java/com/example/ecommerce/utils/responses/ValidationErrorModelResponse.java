@@ -1,4 +1,4 @@
-package com.example.ecommerce.responses;
+package com.example.ecommerce.utils.responses;
 
 public class ValidationErrorModelResponse {
     private String message;

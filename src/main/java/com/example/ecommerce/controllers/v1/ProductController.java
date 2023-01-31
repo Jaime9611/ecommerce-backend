@@ -3,11 +3,13 @@ package com.example.ecommerce.controllers.v1;
 import com.example.ecommerce.api.v1.model.ProductDTO;
 import com.example.ecommerce.services.ProductService;
 import com.example.ecommerce.utils.constants.Endpoints;
+import com.example.ecommerce.utils.responses.ResponseDTO;
 import java.util.List;
 import java.util.UUID;
 
 import com.example.ecommerce.utils.constants.Paths;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +26,12 @@ public class ProductController {
   private ProductService productService;
 
   @GetMapping
-  public ResponseEntity<List<ProductDTO>> getAllProducts() {
-    return ResponseEntity.ok(productService.getAllProducts());
+  public ResponseEntity<ResponseDTO> getAllProducts() {
+    List<ProductDTO> products = productService.getAllProducts();
+
+    return ResponseEntity.ok(
+        ResponseDTO.builder().status(HttpStatus.OK.toString()).message("Success").data(products)
+            .build());
   }
 
   @GetMapping(Paths.Products.GET_PRODUCT_BY_ID)

@@ -26,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
   public ProductDTO getProductById(UUID id) {
     Optional<Product> product = productRepository.findById(id);
 
-    if (!product.isPresent()) {
+    if (product.isEmpty()) {
       throw new EntityNotFoundException("Product", id);
     }
 
@@ -37,7 +37,7 @@ public class ProductServiceImpl implements ProductService {
   public List<ProductDTO> getAllProducts() {
     List<Product> products = productRepository.findAll();
 
-    return products.stream().map(product -> productMapper.productToProductDTO(product)).collect(Collectors.toList());
+   return products.stream().map(product -> productMapper.productToProductDTO(product)).collect(Collectors.toList());
   }
 
   @Override
