@@ -14,6 +14,7 @@ public class ProductDTO {
   private String name;
   private String desc;
   private Double price;
+  private String imageUrl;
   private List<ProductCategoryDTO> categories;
   private ProductInventoryDTO inventory;
 }

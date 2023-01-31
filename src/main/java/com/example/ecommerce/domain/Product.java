@@ -3,6 +3,7 @@ package com.example.ecommerce.domain;
 import com.example.ecommerce.utils.constants.TableConstants;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -45,6 +46,11 @@ public class Product {
   @NotNull
   @NotBlank
   private Double price;
+
+  @NotNull
+  @NotBlank
+  @Column(name = "image_url")
+  private String imageUrl;
 
   @OneToOne
   @JoinColumn(name = "inventory_id")
