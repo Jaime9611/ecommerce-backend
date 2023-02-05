@@ -3,12 +3,11 @@ package com.example.ecommerce.services;
 import com.example.ecommerce.api.v1.mapper.ProductMapper;
 import com.example.ecommerce.api.v1.model.ProductDTO;
 import com.example.ecommerce.domain.Product;
-import com.example.ecommerce.exceptions.EntityNotFoundException;
+import com.example.ecommerce.validations.exceptions.EntityNotFoundException;
 import com.example.ecommerce.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;

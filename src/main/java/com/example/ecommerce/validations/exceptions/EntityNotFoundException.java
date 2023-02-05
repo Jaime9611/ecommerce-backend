@@ -1,4 +1,4 @@
-package com.example.ecommerce.exceptions;
+package com.example.ecommerce.validations.exceptions;
 
 import java.util.UUID;
 
