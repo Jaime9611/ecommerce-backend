@@ -1,6 +1,7 @@
 package com.example.ecommerce.domain.security;
 
 import com.example.ecommerce.domain.UserAddress;
+import com.example.ecommerce.utils.constants.TableConstants;
 import java.util.stream.Collectors;
 import javax.persistence.Transient;
 import lombok.AllArgsConstructor;
@@ -32,12 +33,12 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "user")
+@Table(name = TableConstants.TABLE_NAME_USER)
 public class User {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  @Type(type = "uuid-char")
+  @Type(type = TableConstants.TYPE_UUID)
   private UUID id;
 
   private String username;
