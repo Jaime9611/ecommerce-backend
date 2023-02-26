@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(Endpoints.PRODUCT_ENDPOINT)
-@CrossOrigin(origins = "${react.origin.url}")
 public class ProductController {
 
     @Autowired
