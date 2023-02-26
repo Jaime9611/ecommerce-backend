@@ -1,36 +1,35 @@
 package com.example.ecommerce.domain;
 
-
-import com.example.ecommerce.domain.security.User;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.UUID;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "user_address")
-public class UserAddress {
+@Table(name = "payment")
+public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Type(type = "uuid-char")
     private UUID id;
 
-    private String address;
-    private String city;
-    private String country;
-    private String phone;
+    @OneToOne
+    @JoinColumn(name = "order_id")
+    private UserOrder order;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Enumerated(value = EnumType.STRING)
+    private PaymentStatus status;
+
 }

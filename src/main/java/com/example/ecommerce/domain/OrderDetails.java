@@ -1,7 +1,5 @@
 package com.example.ecommerce.domain;
 
-
-import com.example.ecommerce.domain.security.User;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
@@ -18,19 +16,22 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "user_address")
-public class UserAddress {
+@Table(name = "order_details")
+public class OrderDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Type(type = "uuid-char")
     private UUID id;
 
-    private String address;
-    private String city;
-    private String country;
-    private String phone;
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private UserOrder order;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    private Double price;
+
+    private int quantity;
 }
