@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(Endpoints.AUTH_ENDPOINT)
-@CrossOrigin(origins = "${react.origin.url}")
 public class AuthController {
 
   @Autowired
