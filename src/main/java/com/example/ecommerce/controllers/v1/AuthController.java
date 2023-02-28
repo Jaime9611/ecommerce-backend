@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "${react.origin.url}")
 @RequestMapping(Endpoints.AUTH_ENDPOINT)
 public class AuthController {
 
