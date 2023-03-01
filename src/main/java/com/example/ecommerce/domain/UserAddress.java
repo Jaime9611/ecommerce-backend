@@ -31,6 +31,6 @@ public class UserAddress {
     private String phone;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "person_id")
     private User user;
 }
