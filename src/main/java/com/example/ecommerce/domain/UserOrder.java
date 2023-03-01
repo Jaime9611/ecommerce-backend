@@ -27,6 +27,6 @@ public class UserOrder {
     private Double total;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "person_id")
     private User user;
 }
